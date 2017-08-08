@@ -76,4 +76,16 @@ class RedditController extends Controller
         $em->flush();
         return $this->redirectToRoute('list');
     }
+
+    /**
+     * @Route("/scraper", name="scraper")
+     */
+    public function scraperAction()
+    {
+        $result = $this->get('reddit_scraper')->scrape();
+
+        return $this->render(':reddit:index.html.twig', [
+            'posts' => []
+        ]);
+    }
 }
